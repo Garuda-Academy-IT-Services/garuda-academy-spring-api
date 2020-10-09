@@ -1,8 +1,8 @@
-package eu.garudaacademy.api.models.entity.responses.factory;
+package eu.garudaacademy.api.models.responses.factory;
 
 import eu.garudaacademy.api.models.entity.Category;
 import eu.garudaacademy.api.models.entity.Purchase;
-import eu.garudaacademy.api.models.entity.responses.CategoryWithPurchasesResponse;
+import eu.garudaacademy.api.models.responses.CategoryWithPurchasesResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

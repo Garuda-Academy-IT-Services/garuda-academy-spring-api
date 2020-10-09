@@ -1,7 +1,7 @@
-package eu.garudaacademy.api.models.entity.responses.factory;
+package eu.garudaacademy.api.models.responses.factory;
 
 import eu.garudaacademy.api.models.entity.Video;
-import eu.garudaacademy.api.models.entity.responses.VideoCreateResponse;
+import eu.garudaacademy.api.models.responses.VideoCreateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
