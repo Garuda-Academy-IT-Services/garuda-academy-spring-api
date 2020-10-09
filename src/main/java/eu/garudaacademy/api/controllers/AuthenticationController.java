@@ -2,7 +2,7 @@ package eu.garudaacademy.api.controllers;
 
 import eu.garudaacademy.api.models.requests.AuthenticationRequest;
 import eu.garudaacademy.api.models.responses.AuthenticationResponse;
-import eu.garudaacademy.api.services.MyUserDetailsService;
+import eu.garudaacademy.api.services.MysqlUserDetailsService;
 import eu.garudaacademy.api.services.JwtToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private MysqlUserDetailsService mysqlUserDetailsService;
 
     @Autowired
     private JwtToolService jwtToolService;
@@ -41,7 +41,7 @@ public class AuthenticationController {
             throw new Exception("incorrect username or password", e);
         }
 
-        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = mysqlUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtToolService.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
