@@ -43,8 +43,8 @@ public class UserController {
 
         final User current = this.userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));
-        current.setFirstName(user.getFirstName());
-        current.setLastName(user.getLastName());
+        current.setUsername(user.getUsername());
+        current.setPassword(user.getPassword());
         current.setEmail(user.getEmail());
 
         return this.userRepository.save(current);
