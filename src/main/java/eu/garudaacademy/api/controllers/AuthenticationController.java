@@ -1,5 +1,6 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.requests.AuthenticationRequest;
 import eu.garudaacademy.api.models.responses.AuthenticationResponse;
 import eu.garudaacademy.api.services.MysqlUserDetailsService;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping(ApiPaths.AUTHENTICATION_BASE)
 public class AuthenticationController {
 
     @Autowired
@@ -28,7 +29,7 @@ public class AuthenticationController {
     @Autowired
     private JwtToolService jwtToolService;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(value = ApiPaths.AUTHENTICATION_AUTHENTICATE, method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 

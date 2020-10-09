@@ -1,5 +1,6 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.entity.User;
 import eu.garudaacademy.api.models.exception.ResourceNotFoundException;
 import eu.garudaacademy.api.repository.UserRepository;
@@ -10,33 +11,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(ApiPaths.USERS_BASE)
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("get-all")
+    @GetMapping(ApiPaths.GET_ALL)
     public List<User> getAll() {
         return this.userRepository.findAll();
     }
 
-    // get user by id
-
-    @GetMapping("/get/{id}")
+    @GetMapping(ApiPaths.GET_BY_ID)
     public User getUserById(@PathVariable(value = "id") final long userId) {
         return this.userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));
     }
     @RequestMapping(
-        value = "/create",
+        value = ApiPaths.CREATE,
         produces = "application/json",
         method = {RequestMethod.POST})
     public User create(@RequestBody final User user) {
         return this.userRepository.save(user);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(ApiPaths.UPDATE)
     public User updateUser(
             @RequestBody final User user,
             @PathVariable(value = "id") final long userId) {
@@ -50,10 +49,9 @@ public class UserController {
         return this.userRepository.save(current);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(ApiPaths.DELETE)
     public ResponseEntity<User> deleteUser(
-            @PathVariable(value = "id") final long userId
-    ) {
+            @PathVariable(value = "id") final long userId) {
 
         final User current = this.userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));

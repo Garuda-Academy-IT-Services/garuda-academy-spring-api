@@ -1,5 +1,6 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.entity.Category;
 import eu.garudaacademy.api.models.responses.CategoryWithPurchasesResponse;
 import eu.garudaacademy.api.models.entity.Purchase;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping(ApiPaths.CATEGORIES_BASE)
 public class CategoryController {
 
     @Autowired
@@ -26,18 +27,18 @@ public class CategoryController {
     @Autowired
     private CategoryWithPurchasesResponseFactory categoryWithPurchasesResponseFactory;
 
-    @GetMapping("/get-all")
+    @GetMapping(ApiPaths.GET_ALL)
     public List<Category> getAll() {
         return this.categoryRepository.findAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping(ApiPaths.GET_BY_ID)
     public Category getById(@PathVariable(value = "id") final long categoryId) {
         return this.categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Video not found: " + categoryId));
     }
 
-    @GetMapping("/get-with-purchases/{userId}")
+    @GetMapping(ApiPaths.CATEGORIES_GET_WITH_PURCHASES)
     public List<CategoryWithPurchasesResponse> getByUser(@PathVariable(value = "userId") final long userId) {
         List<Category> categories = this.categoryRepository.findAll();
         List<Purchase> purchases = this.purchaseRepository.findByUserId(userId);
@@ -46,14 +47,14 @@ public class CategoryController {
     }
 
     @RequestMapping(
-        value = "/create",
+        value = ApiPaths.CREATE,
         produces = "application/json",
         method = {RequestMethod.POST})
     public Category create(@RequestBody final Category category) {
         return this.categoryRepository.save(category);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping(ApiPaths.UPDATE)
     public Category updateUser(
             @RequestBody final Category category,
             @PathVariable(value = "id") final long categoryId) {
@@ -66,7 +67,7 @@ public class CategoryController {
         return this.categoryRepository.save(current);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(ApiPaths.DELETE)
     public ResponseEntity<Category> delete(@PathVariable(value = "id") final long categoryId) {
 
         final Category current = this.categoryRepository.findById(categoryId)
