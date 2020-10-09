@@ -1,9 +1,8 @@
 package eu.garudaacademy.api.controllers;
 
-import eu.garudaacademy.api.models.entity.responses.factory.VideoCreateResponseFactory;
-import eu.garudaacademy.api.models.entity.Purchase;
+import eu.garudaacademy.api.models.responses.factory.VideoCreateResponseFactory;
 import eu.garudaacademy.api.models.entity.Video;
-import eu.garudaacademy.api.models.entity.responses.VideoCreateResponse;
+import eu.garudaacademy.api.models.responses.VideoCreateResponse;
 import eu.garudaacademy.api.models.exception.ResourceNotFoundException;
 import eu.garudaacademy.api.repository.PurchaseRepository;
 import eu.garudaacademy.api.repository.VideoRepository;

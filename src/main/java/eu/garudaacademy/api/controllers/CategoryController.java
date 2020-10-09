@@ -1,9 +1,9 @@
 package eu.garudaacademy.api.controllers;
 
 import eu.garudaacademy.api.models.entity.Category;
-import eu.garudaacademy.api.models.entity.responses.CategoryWithPurchasesResponse;
+import eu.garudaacademy.api.models.responses.CategoryWithPurchasesResponse;
 import eu.garudaacademy.api.models.entity.Purchase;
-import eu.garudaacademy.api.models.entity.responses.factory.CategoryWithPurchasesResponseFactory;
+import eu.garudaacademy.api.models.responses.factory.CategoryWithPurchasesResponseFactory;
 import eu.garudaacademy.api.models.exception.ResourceNotFoundException;
 import eu.garudaacademy.api.repository.CategoryRepository;
 import eu.garudaacademy.api.repository.PurchaseRepository;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

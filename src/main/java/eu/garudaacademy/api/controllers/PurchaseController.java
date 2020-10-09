@@ -1,8 +1,8 @@
 package eu.garudaacademy.api.controllers;
 
-import eu.garudaacademy.api.models.entity.responses.factory.PurchaseCreateResponseFactory;
+import eu.garudaacademy.api.models.responses.factory.PurchaseCreateResponseFactory;
 import eu.garudaacademy.api.models.entity.Purchase;
-import eu.garudaacademy.api.models.entity.responses.PurchaseCreateResponse;
+import eu.garudaacademy.api.models.responses.PurchaseCreateResponse;
 import eu.garudaacademy.api.models.exception.ResourceNotFoundException;
 import eu.garudaacademy.api.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
