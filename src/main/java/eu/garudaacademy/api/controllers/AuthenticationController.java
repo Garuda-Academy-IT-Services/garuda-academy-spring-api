@@ -29,7 +29,9 @@ public class AuthenticationController {
     @Autowired
     private JwtToolService jwtToolService;
 
-    @RequestMapping(value = ApiPaths.AUTHENTICATION_AUTHENTICATE, method = RequestMethod.POST)
+    @RequestMapping(
+            value = ApiPaths.AUTHENTICATION_AUTHENTICATE,
+            method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
