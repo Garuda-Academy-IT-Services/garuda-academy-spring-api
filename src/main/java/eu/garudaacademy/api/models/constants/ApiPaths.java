@@ -5,7 +5,6 @@ public class ApiPaths {
     public static final String AUTHENTICATION_AUTHENTICATE = "/authenticate";
 
     public static final String VIDEOS_BASE = "/videos";
-    public static final String VIDEOS_GET_BY_CATEGORY_RAW = "/get-by-category";
     public static final String VIDEOS_GET_BY_CATEGORY = "/get-by-category/{categoryId}";
 
     public static final String CATEGORIES_BASE = "/categories";
