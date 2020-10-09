@@ -52,8 +52,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         ApiPaths.AUTHENTICATION_BASE + ApiPaths.AUTHENTICATION_AUTHENTICATE,
-                        ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_ALL,
-                        ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_BY_CATEGORY)
+                        ApiPaths.VIDEOS_BASE + ApiPaths.GET_ALL,
+                        ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_BY_CATEGORY_RAW,
+                        ApiPaths.CATEGORIES_BASE + ApiPaths.GET_ALL,
+                        ApiPaths.CATEGORIES_BASE + ApiPaths.GET_BY_ID,
+                        ApiPaths.USERS_BASE + ApiPaths.CREATE)
                 .permitAll()
                 .anyRequest()
                 .authenticated()
