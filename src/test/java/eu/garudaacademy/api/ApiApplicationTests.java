@@ -1,4 +1,4 @@
-package com.garudaacademy.api;
+package eu.garudaacademy.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
