@@ -1,7 +1,8 @@
 package eu.garudaacademy.api.config;
 
-import eu.garudaacademy.api.filters.JwtRequestFilter;
-import eu.garudaacademy.api.services.MyUserDetailsService;
+import eu.garudaacademy.api.config.filters.JwtRequestFilter;
+import eu.garudaacademy.api.models.constants.ApiPaths;
+import eu.garudaacademy.api.services.MysqlUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,33 +19,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private MysqlUserDetailsService mysqlUserDetailsService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.userDetailsService(myUserDetailsService);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers(
-                        "/authentication/authenticate",
-                        "/videos/get-all",
-                        "/videos/get-by-category")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        auth.userDetailsService(mysqlUserDetailsService);
     }
 
     @Override
@@ -56,5 +38,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        configureAllowedPaths(http);
+        configureTokenRequestFilter(http);
+    }
+
+    protected void configureAllowedPaths(final HttpSecurity http) throws Exception {
+        http.csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers(
+                        ApiPaths.AUTHENTICATION_BASE + ApiPaths.AUTHENTICATION_AUTHENTICATE,
+                        ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_ALL,
+                        ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_BY_CATEGORY)
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    protected void configureTokenRequestFilter(final HttpSecurity http) {
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
