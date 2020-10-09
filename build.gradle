@@ -20,6 +20,8 @@ dependencies {
 
 	/* SPRING SECURITY */
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	/* LOMBOK */
