@@ -1,9 +1,9 @@
-package eu.garudaacademy.api.models.entity.responses.factory;
+package eu.garudaacademy.api.models.responses.factory;
 
 import eu.garudaacademy.api.models.entity.Category;
 import eu.garudaacademy.api.models.entity.User;
 import eu.garudaacademy.api.models.entity.Video;
-import eu.garudaacademy.api.models.entity.responses.IdResponse;
+import eu.garudaacademy.api.models.responses.IdResponse;
 import org.springframework.stereotype.Service;
 
 @Service

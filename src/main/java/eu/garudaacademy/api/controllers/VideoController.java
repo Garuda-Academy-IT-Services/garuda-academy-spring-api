@@ -1,9 +1,9 @@
 package eu.garudaacademy.api.controllers;
 
-import eu.garudaacademy.api.models.entity.responses.factory.VideoCreateResponseFactory;
-import eu.garudaacademy.api.models.entity.Purchase;
+import eu.garudaacademy.api.models.constants.ApiPaths;
+import eu.garudaacademy.api.models.responses.factory.VideoCreateResponseFactory;
 import eu.garudaacademy.api.models.entity.Video;
-import eu.garudaacademy.api.models.entity.responses.VideoCreateResponse;
+import eu.garudaacademy.api.models.responses.VideoCreateResponse;
 import eu.garudaacademy.api.models.exception.ResourceNotFoundException;
 import eu.garudaacademy.api.repository.PurchaseRepository;
 import eu.garudaacademy.api.repository.VideoRepository;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/videos")
+@RequestMapping(ApiPaths.VIDEOS_BASE)
 public class VideoController {
 
     @Autowired
@@ -26,18 +26,18 @@ public class VideoController {
     @Autowired
     private VideoCreateResponseFactory videoCreateResponseFactory;
 
-    @GetMapping("/get-all")
+    @GetMapping(ApiPaths.GET_ALL)
     public List<Video> getAll() {
         return this.videoRepository.findAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping(ApiPaths.GET_BY_ID)
     public Video getById(@PathVariable(value = "id") final long videoId) {
         return this.videoRepository.findById(videoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Video not found: " + videoId));
     }
 
-    @GetMapping("/get-by-category/{categoryId}")
+    @GetMapping(ApiPaths.VIDEOS_GET_BY_CATEGORY)
     public List<Video> getByCategory(
             @PathVariable(value = "categoryId") final long categoryId) {
 
@@ -47,7 +47,7 @@ public class VideoController {
     }
 
     @RequestMapping(
-        value = "/create",
+        value = ApiPaths.CREATE,
         produces = "application/json",
         method = {RequestMethod.POST})
     public VideoCreateResponse create(@RequestBody final Video video) {
@@ -56,7 +56,7 @@ public class VideoController {
         return videoCreateResponseFactory.build(saveResponse);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping(ApiPaths.UPDATE)
     public Video updateUser(
             @RequestBody final Video video,
             @PathVariable(value = "id") final long videoId) {
@@ -71,7 +71,7 @@ public class VideoController {
         return this.videoRepository.save(current);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(ApiPaths.DELETE)
     public ResponseEntity<Video> delete(@PathVariable(value = "id") final long videoId) {
 
         final Video current = this.videoRepository.findById(videoId)

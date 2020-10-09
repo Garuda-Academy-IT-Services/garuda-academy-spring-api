@@ -1,4 +1,4 @@
-package eu.garudaacademy.api.models.entity.responses;
+package eu.garudaacademy.api.models.responses;
 
 import lombok.Builder;
 import lombok.Getter;
