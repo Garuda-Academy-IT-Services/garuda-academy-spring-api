@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(ApiPaths.USERS_BASE)
 public class UserController {
 
@@ -27,6 +28,7 @@ public class UserController {
         return this.userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));
     }
+
     @RequestMapping(
         value = ApiPaths.CREATE,
         produces = "application/json",
