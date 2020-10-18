@@ -22,8 +22,8 @@ import java.util.Map;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private static String USER_CREDENTIALS_TOKEN_KEY = "jwt";
-    private static String USER_CREDENTIALS_USERNAME_KEY = "username";
+    private static final String USER_CREDENTIALS_TOKEN_KEY = "jwt";
+    private static final String USER_CREDENTIALS_USERNAME_KEY = "username";
 
     @Autowired
     private MysqlUserDetailsService userDetailsService;
