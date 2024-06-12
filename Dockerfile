@@ -17,6 +17,9 @@ RUN ./gradlew dependencies
 # Copy the rest of the application code
 COPY . /app
 
+# give gradlew permission to run!
+RUN chmod +x gradlew
+
 # Build the application
 RUN ./gradlew build
 
