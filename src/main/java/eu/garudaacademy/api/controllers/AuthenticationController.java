@@ -1,10 +1,14 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.controllers.services.AuthenticationService;
 import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.requests.AuthenticationRequest;
+import eu.garudaacademy.api.models.requests.TokenVerificationRequest;
 import eu.garudaacademy.api.models.responses.AuthenticationResponse;
+import eu.garudaacademy.api.models.responses.TokenVerificationResponse;
 import eu.garudaacademy.api.services.MysqlUserDetailsService;
 import eu.garudaacademy.api.services.JwtToolService;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +31,9 @@ public class AuthenticationController {
     @Autowired
     private JwtToolService jwtToolService;
 
-    //@CrossOrigin(value = {"*"}, allowedHeaders = {"*"})
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @RequestMapping(
             value = ApiPaths.AUTHENTICATION_AUTHENTICATE,
             method = RequestMethod.POST)
@@ -47,8 +53,15 @@ public class AuthenticationController {
         final String jwt = jwtToolService.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
 
+    @RequestMapping(
+            value = ApiPaths.VERIFY_TOKEN,
+            method = RequestMethod.POST)
+    public ResponseEntity<?> verifyAuthenticationToken(
+            @RequestBody TokenVerificationRequest tokenVerificationRequest) {
 
+        return ResponseEntity.ok(authenticationService.verifyToken(tokenVerificationRequest));
     }
 
 }

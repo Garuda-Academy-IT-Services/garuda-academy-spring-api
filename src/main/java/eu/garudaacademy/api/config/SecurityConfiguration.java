@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -53,8 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         ApiPaths.AUTHENTICATION_BASE + ApiPaths.AUTHENTICATION_AUTHENTICATE,
+                        ApiPaths.AUTHENTICATION_BASE + ApiPaths.VERIFY_TOKEN,
                         ApiPaths.VIDEOS_BASE + ApiPaths.GET_ALL,
                         ApiPaths.VIDEOS_BASE + ApiPaths.VIDEOS_GET_BY_CATEGORY,
+                        ApiPaths.VIDEOS_BASE + ApiPaths.GET_BY_ID,
                         ApiPaths.CATEGORIES_BASE + ApiPaths.GET_ALL,
                         ApiPaths.CATEGORIES_BASE + ApiPaths.GET_BY_ID,
                         ApiPaths.USERS_BASE + ApiPaths.CREATE)
