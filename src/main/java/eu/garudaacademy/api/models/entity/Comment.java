@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Comments {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class Comments {
     @Column
     private int commentLike;
 
-    public Comments(final User user, final String comment, final int commentLike) {
+    public Comment(final User user, final String comment, final int commentLike) {
         super();
         this.user = user;
         this.comment = comment;

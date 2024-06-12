@@ -1,14 +1,14 @@
 package eu.garudaacademy.api.services;
 
+import eu.garudaacademy.api.models.authentication.LoggedInUser;
+import eu.garudaacademy.api.models.entity.User;
 import eu.garudaacademy.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,13 +19,16 @@ public class MysqlUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final List<eu.garudaacademy.api.models.entity.User> userEntities = userRepository.findByUsername(username);
+        final List<User> userEntities = userRepository.findByUsername(username);
 
         if (userEntities.size() > 0) {
-            eu.garudaacademy.api.models.entity.User userEntity = userEntities.get(0);
-            return new User(userEntity.getUsername(), userEntity.getPassword(), new ArrayList<>());
+            User userEntity = userEntities.get(0);
+
+            return LoggedInUser.builder()
+                    .user(userEntity)
+                    .build();
         }
 
-        return new User(null, null, new ArrayList<>());
+        throw new UsernameNotFoundException("We couldn't log you in with the provided credentials!");
     }
 }

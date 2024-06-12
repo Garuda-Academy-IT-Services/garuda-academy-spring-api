@@ -1,22 +1,24 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.controllers.services.AuthenticationService;
 import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.requests.AuthenticationRequest;
+import eu.garudaacademy.api.models.requests.TokenVerificationRequest;
 import eu.garudaacademy.api.models.responses.AuthenticationResponse;
+import eu.garudaacademy.api.models.responses.TokenVerificationResponse;
 import eu.garudaacademy.api.services.MysqlUserDetailsService;
 import eu.garudaacademy.api.services.JwtToolService;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping(ApiPaths.AUTHENTICATION_BASE)
 public class AuthenticationController {
 
@@ -28,6 +30,9 @@ public class AuthenticationController {
 
     @Autowired
     private JwtToolService jwtToolService;
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @RequestMapping(
             value = ApiPaths.AUTHENTICATION_AUTHENTICATE,
@@ -48,8 +53,15 @@ public class AuthenticationController {
         final String jwt = jwtToolService.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
 
+    @RequestMapping(
+            value = ApiPaths.VERIFY_TOKEN,
+            method = RequestMethod.POST)
+    public ResponseEntity<?> verifyAuthenticationToken(
+            @RequestBody TokenVerificationRequest tokenVerificationRequest) {
 
+        return ResponseEntity.ok(authenticationService.verifyToken(tokenVerificationRequest));
     }
 
 }

@@ -3,6 +3,7 @@ package eu.garudaacademy.api.models.constants;
 public class ApiPaths {
     public static final String AUTHENTICATION_BASE = "/authentication";
     public static final String AUTHENTICATION_AUTHENTICATE = "/authenticate";
+    public static final String VERIFY_TOKEN = "/verify-token";
 
     public static final String VIDEOS_BASE = "/videos";
     public static final String VIDEOS_GET_BY_CATEGORY = "/get-by-category/{categoryId}";
@@ -13,6 +14,8 @@ public class ApiPaths {
     public static final String PURCHASES_BASE = "/purchases";
 
     public static final String USERS_BASE = "/users";
+
+    public static final String COMMENTS_BASE = "/comments";
 
     public static final String GET_ALL = "/get-all";
     public static final String GET_BY_ID = "/get/{id}";
