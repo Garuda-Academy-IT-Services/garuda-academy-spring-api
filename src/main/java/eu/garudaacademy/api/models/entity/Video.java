@@ -3,6 +3,7 @@ package eu.garudaacademy.api.models.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "videos")
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Video {
 
     @Id
@@ -32,11 +34,7 @@ public class Video {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Video(final String name, final String description, final String url, final int userLike) {
-        super();
-        this.name = name;
-        this.description = description;
-        this.url = url;
-        this.userLike = userLike;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "video_id")
+    private List<Comment> comments;
 }
