@@ -8,6 +8,9 @@ WORKDIR /app
 COPY gradlew build.gradle settings.gradle /app/
 COPY gradle /app/gradle
 
+# give gradlew permission to run!
+RUN chmod +x gradlew
+
 # Download the dependencies before copying the entire project to take advantage of Docker's caching
 RUN ./gradlew dependencies
 
