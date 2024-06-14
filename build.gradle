@@ -47,10 +47,6 @@ test {
 //	}
 //}
 
-bootJar {
-	enabled = false
-}
-
-jar {
-	enabled = true
+tasks.named("bootRun") {
+	mainClass = 'eu.garudaacademy.api.ApiApplication'
 }

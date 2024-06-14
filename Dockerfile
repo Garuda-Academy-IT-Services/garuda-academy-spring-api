@@ -35,11 +35,11 @@ RUN ./gradlew dependencies
 COPY . /app
 
 # give gradlew permission to run!
-RUN chmod +x ./app/gradlew
+RUN chmod +x gradlew
 
 # Build the application
 #RUN ./gradlew build --stacktrace
-RUN ./app/gradlew bootRun --stacktrace
+RUN ./gradlew bootRun --stacktrace
 
 # Expose the port the app runs on
 EXPOSE 8080
