@@ -46,7 +46,3 @@ test {
 //		attributes 'Start-Class': 'eu.garudaacademy.api.ApiApplication'
 //	}
 //}
-
-tasks.named("bootRun") {
-	mainClass = 'eu.garudaacademy.api.ApiApplication'
-}
