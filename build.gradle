@@ -41,10 +41,8 @@ test {
 	useJUnitPlatform()
 }
 
-jar {
+bootJar {
 	manifest {
-		attributes 'Implementation-Title': 'Gradle Quickstart',
-				'Implementation-Version': version,
-				'Main-Class': 'eu.garudaacademy.api.ApiApplication'
+		attributes 'Start-Class': 'eu.garudaacademy.api.ApiApplication'
 	}
 }
