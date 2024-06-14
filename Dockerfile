@@ -4,9 +4,6 @@ FROM mysql:latest
 COPY . .
 
 ENV MYSQL_DATABASE=videoapi
-ENV MYSQL_USER=garudadb
-ENV MYSQL_PASSWORD=almakortecseresznye123456
-ENV MYSQL_ROOT_PASSWORD=rootroot
 
 CMD ["mysqld"]
 EXPOSE 3306
