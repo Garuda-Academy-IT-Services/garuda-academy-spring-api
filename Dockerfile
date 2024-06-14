@@ -38,10 +38,11 @@ COPY . /app
 RUN chmod +x gradlew
 
 # Build the application
-RUN ./gradlew build --stacktrace
+#RUN ./gradlew build --stacktrace
+RUN ./gradlew bootRun --stacktrace
 
 # Expose the port the app runs on
 EXPOSE 8080
 
 # Set the entry point to run the application
-CMD ["java", "-jar", "build/libs/api-0.0.1-SNAPSHOT.jar"]
+#CMD ["java", "-jar", "build/libs/api-0.0.1-SNAPSHOT.jar"]
