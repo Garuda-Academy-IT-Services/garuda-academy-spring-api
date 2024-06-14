@@ -44,4 +44,4 @@ RUN ./gradlew build --stacktrace
 EXPOSE 8080
 
 # Set the entry point to run the application
-CMD ["java", "-jar", "build/libs/api-0.0.1-SNAPSHOT.jar", "eu.garudaacademy.api.ApiApplication"]
+CMD ["java", "-jar", "build/libs/api-0.0.1-SNAPSHOT.jar"]
