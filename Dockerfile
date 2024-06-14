@@ -1,14 +1,12 @@
 # cat Dockerfile
 FROM mysql:latest
 
-MAINTAINER baeldung.com
-
 RUN chown -R mysql:root /var/lib/mysql/
 
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
-ARG MYSQL_ROOT_PASSWORD
+#ARG MYSQL_DATABASE
+#ARG MYSQL_USER
+#ARG MYSQL_PASSWORD
+#ARG MYSQL_ROOT_PASSWORD
 
 ENV MYSQL_DATABASE=$MYSQL_DATABASE
 ENV MYSQL_USER=$MYSQL_USER
@@ -40,7 +38,7 @@ COPY . /app
 RUN chmod +x gradlew
 
 # Build the application
-RUN ./gradlew build --debug
+RUN ./gradlew build
 
 # Expose the port the app runs on
 EXPOSE 8080
