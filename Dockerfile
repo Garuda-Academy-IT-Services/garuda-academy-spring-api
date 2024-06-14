@@ -1,8 +1,6 @@
 # cat Dockerfile
 FROM mysql:latest
 
-#RUN chown -R mysql:root /var/lib/mysql/
-
 COPY . .
 
 ENV MYSQL_DATABASE=videoapi
@@ -10,13 +8,9 @@ ENV MYSQL_USER=garudadb
 ENV MYSQL_PASSWORD=almakortecseresznye123456
 ENV MYSQL_ROOT_PASSWORD=rootroot
 
-#ENV MYSQL_DATABASE=$MYSQL_DATABASE
-#ENV MYSQL_USER=$MYSQL_USER
-#ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
-#ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-
-EXPOSE 3306
 CMD ["mysqld"]
+EXPOSE 3306
+
 
 #FROM openjdk:11-jdk-slim
 #
