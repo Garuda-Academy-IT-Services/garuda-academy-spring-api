@@ -41,8 +41,16 @@ test {
 	useJUnitPlatform()
 }
 
+//bootJar {
+//	manifest {
+//		attributes 'Start-Class': 'eu.garudaacademy.api.ApiApplication'
+//	}
+//}
+
 bootJar {
-	manifest {
-		attributes 'Start-Class': 'eu.garudaacademy.api.ApiApplication'
-	}
+	enabled = false
+}
+
+jar {
+	enabled = true
 }
