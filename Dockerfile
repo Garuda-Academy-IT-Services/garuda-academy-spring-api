@@ -1,5 +1,5 @@
 # cat Dockerfile
-FROM mysql:latest
+FROM mysql:8.0
 
 COPY . .
 
