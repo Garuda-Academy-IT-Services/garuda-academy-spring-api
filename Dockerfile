@@ -5,8 +5,8 @@ COPY . .
 
 ENV MYSQL_DATABASE=videoapi
 
-CMD ["mysqld"]
 EXPOSE 3306
+CMD ["mysqld"]
 
 
 #FROM openjdk:11-jdk-slim
