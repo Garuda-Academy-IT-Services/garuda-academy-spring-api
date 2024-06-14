@@ -17,7 +17,7 @@ RUN ./gradlew clean build
 CMD ["java", "-jar", "build/libs/api-0.0.1-SNAPSHOT.jar"]
 
 
- Use an official OpenJDK runtime as a parent image
+# Use an official OpenJDK runtime as a parent image
 FROM openjdk:11-jdk-slim
 
 # Set the working directory in the container
