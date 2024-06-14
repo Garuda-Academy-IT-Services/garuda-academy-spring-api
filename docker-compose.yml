@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    image: openjdk:11-jdk-slim
+    ports:
+      - "8080:8080"
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
