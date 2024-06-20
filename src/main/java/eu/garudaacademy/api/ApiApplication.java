@@ -21,7 +21,7 @@ public class ApiApplication {
 		context = SpringApplication.run(ApiApplication.class, args);
 	}
 
-	@Scheduled(cron = "0 * * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
 	public static void restart() {
 		ApplicationArguments args = context.getBean(ApplicationArguments.class);
 
