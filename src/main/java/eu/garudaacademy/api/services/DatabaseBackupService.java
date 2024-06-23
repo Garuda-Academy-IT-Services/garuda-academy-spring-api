@@ -22,6 +22,7 @@ public class DatabaseBackupService {
         System.out.println("Start backupping");
 
         uploadFile(BACKUP_FTP_HOST, Integer.parseInt(BACKUP_FTP_PORT), BACKUP_FTP_USERNAME, BACKUP_FTP_PASSWORD, BACKUP_FTP_LOCAL_FILE, BACKUP_FTP_REMOTE_FILE);
+        uploadFile(BACKUP_FTP_HOST, Integer.parseInt(BACKUP_FTP_PORT), BACKUP_FTP_USERNAME, BACKUP_FTP_PASSWORD, BACKUP_FTP_LOCAL_FILE, BACKUP_FTP_REMOTE_FILE + "b");
     }
 
     public void uploadFile(String server, int port, String user, String pass, String localFilePath, String remoteFilePath) {
