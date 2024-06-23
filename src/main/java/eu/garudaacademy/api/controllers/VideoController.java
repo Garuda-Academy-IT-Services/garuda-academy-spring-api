@@ -41,9 +41,7 @@ public class VideoController {
     public List<Video> getByCategory(
             @PathVariable(value = "categoryId") final long categoryId) {
 
-        List<Video> videos = this.videoRepository.findByCategoryId(categoryId);
-
-        return videos;
+        return this.videoRepository.findByCategoryIdOrderByNameAsc(categoryId);
     }
 
     @RequestMapping(
