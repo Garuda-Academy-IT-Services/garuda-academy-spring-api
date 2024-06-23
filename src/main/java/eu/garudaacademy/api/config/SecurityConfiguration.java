@@ -43,20 +43,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000"); // Add your allowed origins
-        config.addAllowedOrigin("https://garudaacademy.eu"); // Add your allowed origins
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-
-        return new CorsFilter(source);
-    }
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("http://localhost:3000"); // Add your allowed origins
+//        config.addAllowedOrigin("https://garudaacademy.eu"); // Add your allowed origins
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return new CorsFilter(source);
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
