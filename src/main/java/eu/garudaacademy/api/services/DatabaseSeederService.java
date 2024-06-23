@@ -5,7 +5,6 @@ import eu.garudaacademy.api.models.entity.Video;
 import eu.garudaacademy.api.repository.CategoryRepository;
 import eu.garudaacademy.api.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +20,7 @@ public class DatabaseSeederService {
 
     @PostConstruct
     public void seedDb() {
-        // seedCategories();
+         // seedCategories();
     }
 
     private void seedCategories() {
