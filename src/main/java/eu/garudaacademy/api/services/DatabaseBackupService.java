@@ -35,7 +35,13 @@ public class DatabaseBackupService {
 
             // Upload file to the FTP server
             try (InputStream inputStream = new FileInputStream(localFilePath)) {
+                if (ftpClient.listFiles(remoteFilePath).length > 0) {
+                    ftpClient.deleteFile(remoteFilePath);
+                    System.out.println("Remote db file deleted");
+                }
+
                 boolean done = ftpClient.storeFile(remoteFilePath, inputStream);
+
                 if (done) {
                     System.out.println("The file is uploaded successfully.");
                 } else {

@@ -2,6 +2,10 @@ import ftplib
 import os
 
 def download_file_from_ftp(server, port, username, password, remote_filepath, local_filepath):
+    if os.path.isfile(local_filepath):
+        print("Local db file deleted")
+        os.remove(local_filepath)
+
     try:
         # Connect to the FTP server
         ftp = ftplib.FTP()
