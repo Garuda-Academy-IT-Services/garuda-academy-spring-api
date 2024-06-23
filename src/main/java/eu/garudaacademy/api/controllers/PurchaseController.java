@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping(ApiPaths.PURCHASES_BASE)
 public class PurchaseController {
 

@@ -20,7 +20,6 @@ import java.util.List;
 
 @RestController
 @Validated
-@CrossOrigin
 @RequestMapping(ApiPaths.USERS_BASE)
 public class UserController {
 
