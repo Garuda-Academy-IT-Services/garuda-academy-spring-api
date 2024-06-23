@@ -9,7 +9,7 @@ ENV SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL
 ENV SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME
 
 COPY . .
-RUN chmod +x gradle
+RUN chmod +x gradlew
 RUN ./gradlew clean build
 ENTRYPOINT java -jar "build/libs/api-0.0.1-SNAPSHOT.jar"
 
