@@ -1,13 +1,15 @@
 package eu.garudaacademy.api.models.responses;
 
-import lombok.AllArgsConstructor;
+import eu.garudaacademy.api.models.entity.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Builder
 public class AuthenticationResponse {
 
     private final String jwt;
+    private final User user;
 }

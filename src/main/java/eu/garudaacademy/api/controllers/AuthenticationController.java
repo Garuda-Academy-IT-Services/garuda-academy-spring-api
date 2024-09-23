@@ -1,6 +1,7 @@
 package eu.garudaacademy.api.controllers;
 
 import eu.garudaacademy.api.controllers.services.AuthenticationService;
+import eu.garudaacademy.api.models.authentication.LoggedInUser;
 import eu.garudaacademy.api.models.constants.ApiPaths;
 import eu.garudaacademy.api.models.requests.AuthenticationRequest;
 import eu.garudaacademy.api.models.requests.TokenVerificationRequest;
@@ -51,7 +52,10 @@ public class AuthenticationController {
         final UserDetails userDetails = mysqlUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtToolService.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(AuthenticationResponse.builder()
+                .jwt(jwt)
+                .user(((LoggedInUser) userDetails).getUserEntity())
+                .build());
     }
 
     @RequestMapping(
