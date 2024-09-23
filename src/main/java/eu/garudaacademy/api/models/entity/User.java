@@ -31,6 +31,12 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    private String pictureUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     public User(final String username, final String password, final String email) {
         super();
         this.username = username;
