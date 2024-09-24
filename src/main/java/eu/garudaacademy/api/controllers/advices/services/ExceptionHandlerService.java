@@ -16,6 +16,23 @@ public class ExceptionHandlerService {
         }
     }
 
+    public String getErrorCodeString(MethodArgumentNotValidException e) {
+
+        String errorCode = e.getBindingResult().getFieldError().getCodes()[1].replaceAll("\\.", "_");
+        String finalString = "";
+
+        for (int i = 0; i < errorCode.length(); i++) {
+            if (errorCode.charAt(i) == '_' && i < errorCode.length() - 1) {
+                finalString += ((errorCode.charAt(i+1) + "").toUpperCase());
+                i++;
+            } else {
+                finalString += errorCode.charAt(i);
+            }
+        }
+
+        return finalString + "Error";
+    }
+
     public String getCleanedExceptionName(final Exception e) {
         return e.getClass().getSimpleName().replaceAll("Exception", "");
     }

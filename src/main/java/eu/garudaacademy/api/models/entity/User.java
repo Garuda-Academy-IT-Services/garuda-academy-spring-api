@@ -28,13 +28,13 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     private String pictureUrl;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", columnDefinition = "int default 2")
     private Role role;
 
     public User(final String username, final String password, final String email) {
