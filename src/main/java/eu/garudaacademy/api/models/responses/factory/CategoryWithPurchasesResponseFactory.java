@@ -5,6 +5,7 @@ import eu.garudaacademy.api.models.entity.Purchase;
 import eu.garudaacademy.api.models.responses.CategoryWithPurchasesResponse;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +37,8 @@ public class CategoryWithPurchasesResponseFactory {
 
     private List<Purchase> getUserPurchaseForCategory(final List<Purchase> purchases, final Category category) {
         return purchases.stream()
-                .filter(purchase -> purchase.getCategory().getId() == category.getId())
+                .filter(purchase -> purchase.getCategory().getId() == category.getId()
+                        && purchase.getValidUntil().isAfter(LocalDate.now()))
                 .collect(Collectors.toList());
     }
 }

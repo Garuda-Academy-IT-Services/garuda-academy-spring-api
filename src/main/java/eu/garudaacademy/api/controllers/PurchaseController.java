@@ -1,6 +1,9 @@
 package eu.garudaacademy.api.controllers;
 
+import eu.garudaacademy.api.controllers.services.PurchaseService;
 import eu.garudaacademy.api.models.constants.ApiPaths;
+import eu.garudaacademy.api.models.requests.PurchaseRequest;
+import eu.garudaacademy.api.models.responses.SuccessResponse;
 import eu.garudaacademy.api.models.responses.factory.PurchaseCreateResponseFactory;
 import eu.garudaacademy.api.models.entity.Purchase;
 import eu.garudaacademy.api.models.responses.PurchaseCreateResponse;
@@ -21,6 +24,9 @@ public class PurchaseController {
     @Autowired
     private PurchaseCreateResponseFactory purchaseCreateResponseFactory;
 
+    @Autowired
+    private PurchaseService purchaseService;
+
     @GetMapping(ApiPaths.GET_ALL)
     public List<Purchase> getAll() {
         return this.purchaseRepository.findAll();
@@ -40,5 +46,16 @@ public class PurchaseController {
         final Purchase dbResponse = this.purchaseRepository.save(purchase);
 
         return purchaseCreateResponseFactory.build(dbResponse);
+    }
+
+    @RequestMapping(
+            value = ApiPaths.PURCHASES_MAKE,
+            produces = "application/json",
+            method = {RequestMethod.POST}
+    )
+    public SuccessResponse makePurchase(@RequestBody final PurchaseRequest request) {
+        purchaseService.makePurchase(request.getPurchaseId());
+
+        return new SuccessResponse();
     }
 }
