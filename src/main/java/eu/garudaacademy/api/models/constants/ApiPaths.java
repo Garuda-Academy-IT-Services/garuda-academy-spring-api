@@ -12,6 +12,7 @@ public class ApiPaths {
     public static final String CATEGORIES_GET_WITH_PURCHASES = "/get-with-purchases/{userId}";
 
     public static final String PURCHASES_BASE = "/purchases";
+    public static final String PURCHASES_MAKE = "/make";
 
     public static final String USERS_BASE = "/users";
 
@@ -22,7 +23,4 @@ public class ApiPaths {
     public static final String CREATE = "/create";
     public static final String UPDATE = "/update/{id}";
     public static final String DELETE = "/delete/{id}";
-
-
-
 }

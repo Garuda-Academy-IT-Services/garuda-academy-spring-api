@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "purchases")
@@ -26,6 +28,8 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
+
+    private LocalDate validUntil;
 
     public Purchase(final User user, final Category category) {
         super();
